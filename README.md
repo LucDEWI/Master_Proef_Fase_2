@@ -91,7 +91,7 @@ To use this project execute the scripts in folowing order.
     
 9. Viewing results via Tensorboard
 
-    The results of the training cycles can be viewed on Tensorboard via Following command.
+    The results of the training cycles can be viewed on Tensorboard via the following command.
     ```py
     tensorboard --logdir tensorboard
     ```
