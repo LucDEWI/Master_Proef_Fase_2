@@ -1,10 +1,10 @@
 # Master_Proef_Fase_2
 
-## Masters project 2022: Design and validation of a bin picking robot vison algoritm.
+## Masters project 2022: Design and validation of a bin picking robot vison algorithm.
 
-This project contains an algorithm for a vision system for a robot to detect grapsing positions on  an object in a box. This project was commisioned by Mitsubishi Chemical Advanced Materials. 
+This project contains an algorithm for a vision system for a robot to detect grasping positions on  an object in a box. This project was commisioned by Mitsubishi Chemical Advanced Materials. 
 
-This project requires a dpeth camrera to function. It is set up to use an Intel Realsense D415 camera. 
+This project requires a depth camera to function. It is set up to use an Intel Realsense D415 camera. 
 
 # Installation
 * Install Python 3.9
@@ -12,12 +12,12 @@ This project requires a dpeth camrera to function. It is set up to use an Intel 
 * Download the Cornell grapsing dataset via: https://www.kaggle.com/datasets/oneoneliu/cornell-grasp 
 * Open this repository in an IDE
 * Install the required packages via Requirements.txt
-* Instal the CUDA toolkit via: https://developer.nvidia.com/cuda-toolkit (if a Nvidia graphics card is available)
-* Run the scripts in the order prescibed
+* Install the CUDA toolkit via: https://developer.nvidia.com/cuda-toolkit (if a Nvidia graphics card is available)
+* Run the scripts in the order prescribed
 
 # Sctructure of project
 
-The following section descrbes the scripts and how to use these scripts. Extra information such as the use of CUDA are available in the comments of the scripts.
+The following section describes the scripts and how to use these scripts. Extra information such as the use of CUDA are available in the comments of the scripts.
 
 ## Data
 This file contains the neccesary files for the script to run. These are several .npy files.
@@ -55,7 +55,7 @@ To use this project execute the scripts in folowing order.
     Gives an output if CUDA is available to use. Use to test if CUDA is installed correctly. 
 2. Cam_test
     
-    Gives an color and dpeth image of the scene through the camera.
+    Gives an color and depth image of the scene through the camera.
 3. Intr_cal
 
     Performs the intrinsic calibration of the camera. Use the chessboard provided in the data directory.
@@ -64,14 +64,14 @@ To use this project execute the scripts in folowing order.
     Performs the extrinsic calibration of the camera. Use the chessboard provided in the data directory.
 5. Generate Cornell depth images
 
-    Do this via following command.
+    Do this via following command to transform the pointclouds of the dataset into depth images.
     ```py
     python -m utils.dataset_processing.generate_cornell_depth <Path To Dataset>
     ```
 6. Add_noise_dataset
 
     If desired extra noise can be added on the Cornell dataset.
-    The path of to the dataset must be given in the script. Note that after noise has been to the dataset it can not be removed. It is recommended to take a copy of the dataset and add noise to this.
+    The path to the dataset must be given in the script. Note that after noise has been to the dataset it can not be removed. It is recommended to take a copy of the    dataset and add noise to this.
 7. Training the network
 
     The network is trained is trained via the following command.
@@ -88,13 +88,20 @@ To use this project execute the scripts in folowing order.
     python train_ggcnn.py --description training_example2 --network ggcnn --dataset cornell --dataset-path <Path To Dataset>
     ```
     Again via --help a full list of all the commands wil be given.
-9. Box_finder
+    
+9. Viewing results via Tensorboard
+
+    The results of the training cycles can be viewed on Tensorboard via Following command.
+    ```py
+    tensorboard --logdir tensorboard
+    ```
+10. Box_finder
 
     This script is used to calibrate the position of the box. The user must enter the distance from the top of the box to the camera in millimeters. If the box is shown on the screen press and hold q to save the posistion of the box.
 
-10. Prediction_without_box
+11. Prediction_without_box
     This script is used to make a prediction with a camera on a scene that does not use a box. A calibration of a box position is not required to use this script.
 
-11. Prediction_with_box
+12. Prediction_with_box
 
     This script is used to make a prediction with a camera on scene with an open box. This must be calibrated wth the earlier scripts before this script is used.
