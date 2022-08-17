@@ -71,7 +71,7 @@ To use this project execute the scripts in folowing order.
 6. Add_noise_dataset
 
     If desired extra noise can be added on the Cornell dataset.
-    The path to the dataset must be given in the script. Note that after noise has been to the dataset it can not be removed. It is recommended to take a copy of the    dataset and add noise to this.
+    The path to the dataset must be given in the script. Note that after noise has been to the dataset it can not be removed. It is recommended to make a copy of the    dataset and add noise to this.
 7. Training the network
 
     The network is trained is trained via the following command.
