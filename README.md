@@ -1,6 +1,6 @@
 # Master_Proef_Fase_2
 
-## Masters project 2022: Design and validation of a bin picking robot vison algorithm.
+## Masters project 2022: Design and validation of a bin picking robot vision algorithm.
 
 This project contains an algorithm for a vision system for a robot to detect grasping positions on  an object in a box. This project was commisioned by Mitsubishi Chemical Advanced Materials. 
 
