@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 
 from .grasp import GraspRectangles, detect_grasps
 
+# functies rond het plotten van de outputs en het berekenen van de IoU score
+# uit https://github.com/dougsm/ggcnn
+
 
 def plot_output(rgb_img, depth_img, grasp_q_img, grasp_angle_img, no_grasps=1, grasp_width_img=None):
     """
@@ -44,6 +47,7 @@ def plot_output(rgb_img, depth_img, grasp_q_img, grasp_angle_img, no_grasps=1, g
     ax.axis('off')
     plt.colorbar(plot)
     plt.show()
+
 
 
 def calculate_iou_match(grasp_q, grasp_angle, ground_truth_bbs, no_grasps=1, grasp_width=None):

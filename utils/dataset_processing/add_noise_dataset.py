@@ -7,7 +7,10 @@ import cv2
 
 from utils.dataset_processing.image import DepthImage
 
+# dit scrpit voegt ruis toe aan de cornell dataset
+# neem een kopie van de originele dataset, want het is niet mogelijk het origineel tergu te krijgen
 
+# functie die gaussiaanse ruis toevoegt aan de dataset
 def noise(img):
 
     mean = 0
@@ -32,13 +35,14 @@ def noise(img):
 
 
 if __name__ == '__main__':
+    # locatie van de dataset
     parser = argparse.ArgumentParser(description='Generate depth images from Cornell PCD files.')
     parser.add_argument('path', type=str, help='Path to Cornell Grasping Dataset')
     args = 'C:\cornell_4'
 
     lis = glob.glob(os.path.join(args, '*', 'pcd*[0-9]*d.tiff'))
     lis.sort()
-
+    # toevoegen van ruis
     for li in lis:
         di = DepthImage.from_tiff(li)
         di = noise(di)

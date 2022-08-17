@@ -4,6 +4,8 @@ import glob
 from .grasp_data import GraspDatasetBase
 from utils.dataset_processing import grasp, image
 
+# nodige functies om de Cornell dataset te verwerken
+# uit https://github.com/dougsm/ggcnn
 
 class CornellDataset(GraspDatasetBase):
     """

@@ -5,7 +5,9 @@ filter_sizes = [32, 16, 8, 8, 16, 32]
 kernel_sizes = [9, 5, 3, 3, 5, 9]
 strides = [3, 2, 2, 2, 2, 3]
 
-
+# In dit scrpit wordt  het GGCNN model gedclareerd
+# Dit bestaat in de eerste stap uit het declareren van de lagen
+# uit https://github.com/dougsm/ggcnn
 class GGCNN(nn.Module):
     """
     GG-CNN
@@ -24,11 +26,11 @@ class GGCNN(nn.Module):
         self.cos_output = nn.Conv2d(filter_sizes[5], 1, kernel_size=2)
         self.sin_output = nn.Conv2d(filter_sizes[5], 1, kernel_size=2)
         self.width_output = nn.Conv2d(filter_sizes[5], 1, kernel_size=2)
-
+        #  Het inintialiseren van de lagen
         for m in self.modules():
             if isinstance(m, (nn.Conv2d, nn.ConvTranspose2d)):
                 nn.init.xavier_uniform_(m.weight, gain=1)
-
+    # Voorwaarste pas van het netwerk met de activatiefuncties per laag
     def forward(self, x):
         x = F.relu(self.conv1(x))
         x = F.relu(self.conv2(x))
@@ -43,7 +45,7 @@ class GGCNN(nn.Module):
         width_output = self.width_output(x)
 
         return pos_output, cos_output, sin_output, width_output
-
+    # Berekenen van de loss per ouput, optellen om totale loss te verkrijgen
     def compute_loss(self, xc, yc):
         y_pos, y_cos, y_sin, y_width = yc
         pos_pred, cos_pred, sin_pred, width_pred = self(xc)

@@ -1,6 +1,7 @@
 import time
 
-
+#  functie gebruikt bij het visualiseren van de data tijdens het trainingsproces
+# uit https://github.com/dougsm/ggcnn
 class TimeIt:
     print_output = True
     last_parent = None

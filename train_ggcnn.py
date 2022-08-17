@@ -21,6 +21,12 @@ from utils.data import get_dataset
 from models import get_network
 from models.common import post_process_output
 
+
+# Dit script wordt gebruikt voor het trainen van een netwerk.
+# Dit dient aangeroepen te worden uit de teerminal
+# onderstaande commando's bevatten de variabelen die bij het trainingsproces kunnen worden aangepast
+# uit https://github.com/dougsm/ggcnn
+
 logging.basicConfig(level=logging.INFO)
 
 def parse_args():
@@ -53,7 +59,7 @@ def parse_args():
     args = parser.parse_args()
     return args
 
-
+# validatie tijdens het trainingsproces
 def validate(net, device, val_data, batches_per_epoch):
     """
     Run validation.
@@ -83,7 +89,7 @@ def validate(net, device, val_data, batches_per_epoch):
                 batch_idx += 1
                 if batches_per_epoch is not None and batch_idx >= batches_per_epoch:
                     break
-
+                # inladen van de data uit de dataset
                 xc = x.to(device)
                 yc = [yy.to(device) for yy in y]
                 lossd = net.compute_loss(xc, yc)
@@ -95,10 +101,10 @@ def validate(net, device, val_data, batches_per_epoch):
                     if ln not in results['losses']:
                         results['losses'][ln] = 0
                     results['losses'][ln] += l.item()/ld
-
+                # berekenen van de loss
                 q_out, ang_out, w_out = post_process_output(lossd['pred']['pos'], lossd['pred']['cos'],
                                                             lossd['pred']['sin'], lossd['pred']['width'])
-
+                # berekenen van de IoU
                 s = evaluation.calculate_iou_match(q_out, ang_out,
                                                    val_data.dataset.get_gtbb(didx, rot, zoom_factor),
                                                    no_grasps=1,
@@ -112,7 +118,7 @@ def validate(net, device, val_data, batches_per_epoch):
 
     return results
 
-
+# trainingsloop
 def train(epoch, net, device, train_data, optimizer, batches_per_epoch, vis=False):
     """
     Run one training epoch
@@ -140,7 +146,7 @@ def train(epoch, net, device, train_data, optimizer, batches_per_epoch, vis=Fals
             batch_idx += 1
             if batch_idx >= batches_per_epoch:
                 break
-
+            # inladen data uit dataset
             xc = x.to(device)
             yc = [yy.to(device) for yy in y]
             lossd = net.compute_loss(xc, yc)
@@ -178,7 +184,7 @@ def train(epoch, net, device, train_data, optimizer, batches_per_epoch, vis=Fals
 
     return results
 
-
+# main loop die gebruik maakt van de validatie en de trainingsloop
 def run():
     args = parse_args()
 
@@ -198,7 +204,7 @@ def run():
     # Load Dataset
     logging.info('Loading {} Dataset...'.format(args.dataset.title()))
     Dataset = get_dataset(args.dataset)
-
+    # splitsen van dataset in training en validatie
     train_dataset = Dataset(args.dataset_path, start=0.0, end=args.split, ds_rotate=args.ds_rotate,
                             random_rotate=True, random_zoom=True,
                             include_depth=args.use_depth, include_rgb=args.use_rgb)
@@ -223,9 +229,9 @@ def run():
     logging.info('Loading Network...')
     input_channels = 1*args.use_depth + 3*args.use_rgb
     ggcnn = get_network(args.network)
-
+    # declareren of cuda of cpu wordt gebruikt
     net = ggcnn(input_channels=input_channels)
-    device = torch.device("cuda")
+    device = torch.device("cuda") #Hier cuda naar cpu veranderen indien niet mogelijk
     net = net.to(device)
     optimizer = optim.Adam(net.parameters())
     logging.info('Done')

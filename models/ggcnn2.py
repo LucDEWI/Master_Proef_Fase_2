@@ -2,7 +2,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
+# declaratie van het GGCNN2 model
+# declaratie van de lagen met activatiefunctie.
+# Dit wordt hier op een andere manier gedclareerd waardoor minder code moet geschreven worden
+# uit https://github.com/dougsm/ggcnn
 class GGCNN2(nn.Module):
     def __init__(self, input_channels=1, filter_sizes= None, l3_k_size=5, dilations= None):
         super().__init__()
@@ -53,7 +56,7 @@ class GGCNN2(nn.Module):
         for m in self.modules():
             if isinstance(m, (nn.Conv2d, nn.ConvTranspose2d)):
                 nn.init.xavier_uniform_(m.weight, gain=1)
-
+    # voorwaarste pas van het netwerk
     def forward(self, x):
         x = self.features(x)
 
@@ -63,7 +66,7 @@ class GGCNN2(nn.Module):
         width_output = self.width_output(x)
 
         return pos_output, cos_output, sin_output, width_output
-
+    # berekenen van de loss per output van het netwerk, optellen voor totale loss
     def compute_loss(self, xc, yc):
         y_pos, y_cos, y_sin, y_width = yc
         pos_pred, cos_pred, sin_pred, width_pred = self(xc)

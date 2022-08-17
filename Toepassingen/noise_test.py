@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
 import pyrealsense2 as rs
+
+# een test om ruis toe te voegen aan de dataset. Niet gebruikt in project. Finale methode te vinden in utils\datset_processing
+
 def add_gaussian_noise(X_img):
 
 

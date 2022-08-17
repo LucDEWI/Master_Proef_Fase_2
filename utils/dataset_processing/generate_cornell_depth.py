@@ -5,6 +5,9 @@ from imageio import imsave
 import argparse
 from utils.dataset_processing.image import DepthImage
 
+# script die de pointclouds van de cornell dataset omzet in dieptebeelden
+# dit script als eerste uitvoeren anders kan het netwerken de data niet verwerken 
+# uit https://github.com/dougsm/ggcnn
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate depth images from Cornell PCD files.')

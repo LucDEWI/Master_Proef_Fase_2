@@ -1,6 +1,8 @@
 import numpy as np
 import cv2 as cv
 import pyrealsense2 as rs
+# Deze source file werd overgebracht uit fase 1 omdat het veel van de nodige functies bevat.
+# Hierbij worden bepaalde functies niet gebruikt in dit project, dez werden behouden omdat deze in de toekomst nog bruikbaar kunnen zijn.
 
 # In deze source file worden de functies die in de scripts worden gebruikt gedefiëneerd.
 # Hierbij wordt een functie wordt aangemaakt en in inputs meegegeven en bij return wordt de outputs van de functie gezet

@@ -7,6 +7,8 @@ from skimage.transform import rotate, resize
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 
+# functies rond het verwerken van beelden
+# uit https://github.com/dougsm/ggcnn
 
 class Image:
     """

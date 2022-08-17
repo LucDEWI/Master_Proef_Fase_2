@@ -1,6 +1,8 @@
 import numpy as np
 import cv2
 
+# nodige functies bij het plotten van de colormaps bij de evaluatie
+# uit https://github.com/dougsm/ggcnn
 
 def gridshow(name, imgs, scales, cmaps, width, border=10):
     """

@@ -4,6 +4,7 @@ import cv2 as cv
 from src import Functions as func
 import os
 # deze functie toont de beelden van de kleur en diepte camera
+# dit geeft ook een aanduiding van de bounding box in het beeld om de kalibratie te controleren
 
 #resolutie en fps van de beelden
 cres = (1920, 1080)

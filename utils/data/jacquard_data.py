@@ -5,6 +5,9 @@ from .grasp_data import GraspDatasetBase
 from utils.dataset_processing import grasp, image
 
 
+# nodige functies om met de Jacquard dataset te werken, niet gebruikt in dit project
+# uit https://github.com/dougsm/ggcnn
+
 class JacquardDataset(GraspDatasetBase):
     """
     Dataset wrapper for the Jacquard dataset.

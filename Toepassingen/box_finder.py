@@ -3,6 +3,8 @@ import numpy as np
 import os
 import cv2
 
+# Dit script bevat de boxfinder. Dit script moet uitgevoerd worden voordat een predictie kan gemaakt worden met een doos.
+# Bij dit script moet een diepte worden opgmeten van de camera naar de bovenkant van de doos.
 
 
 #resolutie en fps van de beelden
@@ -44,7 +46,7 @@ while True:
     img = np.hstack((color, depth_color))
     #cv2.imshow('f', img)
     blur = cv2.GaussianBlur(depth, (3, 3), 0)
-    mask = cv2.inRange(blur, 500, 530)
+    mask = cv2.inRange(blur, 500, 530) #Hier moet een diepte range worden ingevuld door de gebruiker.
 
     mask = cv2.erode(mask, None, iterations= 2)
     mask = cv2.dilate(mask, None, iterations= 2)
@@ -57,12 +59,11 @@ while True:
 
 
 
-
-    #((x, y), (width, height), a) = rect =  cv2.minAreaRect(contours[0])
+    # Hier wordt een bounding box rond de doos getekend.
+   
     x, y, w, h = box = cv2.boundingRect(contours[0])
 
-    #box = cv2.boxPoints(rect)
-    #box = np.int0(box)
+  
 
     cv2.rectangle(color, (x, y), (x+w, y+h), (0, 255, 0), 2)
     #cv2.drawContours(black, [box], 0, (255, 255, 255), -1 )
@@ -75,6 +76,11 @@ while True:
 
     #cv2.imshow('', color)
     #cropped_image = color[y:y + h, x:x + w]
+    
+
+    # hier wordt een crop van het beeld gemaakt met de bounding box rond de doos
+    # Er wordt ook een verkleining van de doos gemaakt. Hierdoor komen de randen van de doos niet in beeld
+    # dit zorgt ervoor dat het netwerk niet de doos kan selecteren
     print([x, y, w, h])
     x_new = x+4
     y_new = y+4

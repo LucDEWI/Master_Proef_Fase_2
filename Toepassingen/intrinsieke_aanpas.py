@@ -1,7 +1,8 @@
 import os
 import numpy as np
 
-
+# Dit script maatk het mogelijk het middenpunt van de intrinsieke matrix aant te passen.
+# hierdoor is het mogelijk met een andere resolutie te werken.
 
 datapath=os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'\data'
 

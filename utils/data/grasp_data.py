@@ -5,6 +5,8 @@ import torch.utils.data
 
 import random
 
+# nodige functies om grijppogingen uit te drukken en te verwerken
+# uit https://github.com/dougsm/ggcnn
 
 class GraspDatasetBase(torch.utils.data.Dataset):
     """

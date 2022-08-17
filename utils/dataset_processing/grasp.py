@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 from skimage.draw import polygon
 from skimage.feature import peak_local_max
 
+# functies die de referentiegrijplocaties uit de Cornell dataset kunnen ophalen
+# uit https://github.com/dougsm/ggcnn
 
 def _gr_text_to_no(l, offset=(0, 0)):
     """
