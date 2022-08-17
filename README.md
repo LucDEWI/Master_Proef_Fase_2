@@ -12,7 +12,7 @@ This project requires a depth camera to function. It is set up to use an Intel R
 * Download the Cornell grapsing dataset via: https://www.kaggle.com/datasets/oneoneliu/cornell-grasp 
 * Open this repository in an IDE
 * Install the required packages via Requirements.txt
-* Install the CUDA toolkit via: https://developer.nvidia.com/cuda-toolkit (if a Nvidia graphics card is available)
+* Install the CUDA toolkit via: https://developer.nvidia.com/cuda-toolkit (if an Nvidia graphics card is available)
 * Run the scripts in the order prescribed
 
 # Sctructure of project
