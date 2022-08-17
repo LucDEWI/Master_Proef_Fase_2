@@ -85,7 +85,7 @@ To use this project execute the scripts in folowing order.
 
     An evaluation can be performed via the following command.
     ```py
-    python train_ggcnn.py --description training_example2 --network ggcnn --dataset cornell --dataset-path <Path To Dataset>
+   python eval_ggcnn.py --network <Path to Trained Network> --dataset cornell --dataset-path <Path to Dataset>
     ```
     Again via --help a full list of all the commands wil be given.
     
