@@ -40,6 +40,10 @@ This directory contains the scripts to calibrate the camera, the position of the
 ## Utils
 Contains the functions for the trainingsproces and evaluation of the network. Also contains functions related to the dataset.
 
+## Test results
+
+Contains test results obtained during the making of the masters thesis.
+
 ## Eval_ggcnn.py
 Script to perfom an evaluation of the network. Futher explained in use.
 
